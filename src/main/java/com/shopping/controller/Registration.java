@@ -18,5 +18,12 @@ public class Registration {
 		model.addAttribute("customer", customer);
 		return "registration";
 	}
+	
+	@RequestMapping(value = "/registration", method = RequestMethod.POST)
+	public String addCustomer(Model model) {
+		Customer customer = new Customer(); 
+		model.addAttribute("customer", customer);
+		return "registration";
+	}
 
 }
