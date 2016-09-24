@@ -1,9 +1,15 @@
 package com.shopping.model;
 
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
 
-
-
+@Entity
 public class Customer {
+	@Id
+	@GeneratedValue
+	private int productId;
+	
 	private String firstName;
 	private String lastName;
 	private String email;
@@ -44,7 +50,5 @@ public class Customer {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
-	
 
 }
