@@ -1,8 +1,8 @@
 package com.shopping.model;
 
-import javax.persistence.Entity;
 
-@Entity
+
+
 public class Customer {
 	private String firstName;
 	private String lastName;
