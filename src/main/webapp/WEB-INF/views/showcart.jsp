@@ -1,26 +1,56 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<link href="pagestylesheet" rel="stylesheet" type="text/css" />
-<title>Insert title here</title>
-</head>
-<body>
+<%@ include file="/WEB-INF/views/template/header.jsp"%>
+<%@ taglib prefix="spring" uri="http://www.springframework.org/tags"%>
 
-	<div id="cart-items-div">
-		<c:forEach var="p" items="${cart.getProductList().size()}">
-			<div class="cart-item">
-				<a href="">Product ID: <c:out value="${p.getProductId()}" /><br>
-					Product Name: <c:out value="${p.getProductName()}" /></a>
+<div class="container-wrapper">
+	<div class="container">
+		<div class="page-header">
+
+
+			<p class="lead">Your Cart</p>
+		</div>
+		<table class="table table-striped table-hover">
+			<thead>
+				<tr class="bg-success">
+					<th>Image</th>
+					<th>Product Name</th>
+					<th>Price</th>
+					<th>Quantity</th>
+				</tr>
+			</thead>
+			<c:forEach items="${cart.getProductList().values()}" var="product">
+				<tr>
+
+
+					<td><img style="max-width: 150px; width: 150px; height: auto;"
+						src="<c:url value="/resources/images/${product.getProductId()}.png"/>"
+						alt="test" style="width: 100%" /></td>
+					<td>${product.getProductName()}</td>
+					<td>${product.getPrice()}USD</td>
+					<td>${product.getQty()}</td>
+				</tr>
+			</c:forEach>
+			<tr>
+				<td>Total Order: ${cart.getOrderValue()}</td>
+			</tr>
+		</table>
+
+		<p>
+			<span style="cursor: pointer"><a
+				href="<c:url value="/productlist"/>">Continue Shopping</a><span
+				class="glyphicon glyphicon-shopping-cart"></span> </span>
+		</p>
+
+		<form action="<c:url value="checkout" />" method="post">
+			<div style="text-align: center; font-weight: bold; font-size: large;">
+				<input type="hidden" value="${product.productId}" /> <input
+					type="submit"
+					style="width: 400px; cursor: pointer; background-color: orange; padding: 10px; border-radius: 20px;"
+					value="Place Order" />
 			</div>
-		</c:forEach>
+		</form>
+		<%@ include file="/WEB-INF/views/template/footer.jsp"%>
 	</div>
-	<div>
-	
-	</div>
+</div>
 
-</body>
-</html>
+
+

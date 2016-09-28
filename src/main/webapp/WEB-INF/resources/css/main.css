@@ -1,0 +1,56 @@
+.container-wrapper {
+    height:80%;
+    margin: auto;
+    margin-top: 10px;
+   /*  margin-bottom: 300px; */
+}
+
+.home-image {
+    display: block;
+    width: 100%; !important;
+    height: auto; !important;
+}
+
+.table {
+    table-layout: fixed;
+    overflow: auto;
+}
+
+.table th {
+    text-align: center;
+    background: darkolivegreen;
+    color: white;
+}
+
+.table td {
+    text-align: center;
+    background: whitesmoke;
+
+   
+    overflow: hidden;
+    font-size:11pt;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+}
+
+.login-box {
+    text-align: center;
+}
+
+.login-container {
+    width: 40%;
+    margin: auto;
+    margin-top: 100px;
+}
+.label-danger { font-size:13px }
+.jumbotron {  padding-top: 0px;  padding-bottom: 10px;}
+.form-horizontal { width: 70%;   margin-left: auto;   margin-right: auto;}
+.form-horizontal .form-group {  margin-right: 0px;  margin-left: 0px; }
+.btnWidth100 { width : 100px; margin-right:10px}
+.btnWidth120 { width : 120px; margin-right:10px} 
+.floatLeft { float: left;}
+.successful-box { padding-bottom:30; text-align: center;}
+.loginBox { width: 40%; margin-left: auto;   margin-right: auto;	}
+.outOfStock {
+    color: darkRed;
+}

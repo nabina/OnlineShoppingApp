@@ -1,8 +1,66 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<beans xmlns="http://www.springframework.org/schema/beans"
-	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
-	
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx.xsd">
+
 	<!-- Root Context: defines shared resources visible to all other web components -->
+
+	 <http use-expressions="true">
+	  
+		<intercept-url pattern="/test" access="hasRole('ROLE_USER')" />
+		<form-login login-page="/login" default-target-url="/home" username-parameter="username" password-parameter="password"/>
+     <logout logout-success-url="/home" />
+       <csrf disabled="true" />
+	</http>
+
+	<!-- <authentication-manager>
+
+		<authentication-provider>
+			<user-service>
+				<user name="nabina" password="123" authorities="ROLE_USER" />
+			</user-service>
+		</authentication-provider>
+	</authentication-manager> -->
+	
+	
+
+	
+	
+	<beans:bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<beans:property name="url" value="jdbc:mysql://localhost/cs544" />
+		<beans:property name="username" value="root" />
+		<beans:property name="password" value="mysql" />
+	</beans:bean>
+	
+	<!-- Select users and user_roles from database -->
+	<authentication-manager>
+	  <authentication-provider>
+		<jdbc-user-service data-source-ref="dataSource"
+		  users-by-username-query=
+		    "select username,password, enabled from users where username=?"
+		  authorities-by-username-query=
+		    "select username, role from user_roles where username =?  " />
+	  </authentication-provider>
+	</authentication-manager>
+	
+	<!--  <authentication-manager alias="authMgr">
+	  <authentication-provider>
+		<jdbc-user-service data-source-ref="dataSource"
+		  users-by-username-query=
+		    "select username,password, enabled from users where username=?"
+		  authorities-by-username-query=
+		    "select username, role from user_roles where username =?  " />
+	  </authentication-provider>
+	</authentication-manager> -->
+	
 		
-</beans>
+	
+</beans:beans>
