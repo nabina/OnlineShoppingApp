@@ -1,5 +1,5 @@
 package com.shopping.repository;
 
-public interface UserRepository {
+public class UserRepository {
 
 }

@@ -1,5 +1,5 @@
 package com.shopping.service;
 
-public class UserService  {
+public class UserService {
 
 }
