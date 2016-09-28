@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans:beans xmlns="http://www.springframework.org/schema/security"
+	xmlns:beans="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-4.1.xsd">
+	
+	<authentication-manager>
+	  <authentication-provider>
+	     <user-service>
+			<user name="test" password="test" authorities="ROLE_USER" />
+			<user name="admin" password="admin" authorities="ROLE_ADMIN" />
+	    </user-service>
+	   <!--  <jdbc-user-service data-source-ref="dataSource" 
+	    	users-by-username-query=
+		    	"select username,password, 1 as enabled from users where username=?"
+		  	authorities-by-username-query=
+		    	"select username, user_type from users where username =?  "/> -->
+	  </authentication-provider>
+	</authentication-manager>
+	
+	<!-- <beans:bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<beans:property name="url" value="jdbc:mysql://localhost/cs544" />
+		<beans:property name="username" value="root" />
+		<beans:property name="password" value="mysql" />
+	</beans:bean> -->
+	
+	<http auto-config="true" use-expressions="true">
+		<intercept-url pattern="/registration/*" access="hasRole('ROLE_ADMIN')" />
+		<intercept-url pattern="/*" access="hasRole('ROLE_USER') || hasRole('ROLE_ADMIN')" />
+		<form-login default-target-url="/cars" always-use-default-target="true"/>
+		<logout logout-success-url="/login?logout" />
+	</http>
+	
+</beans:beans>
