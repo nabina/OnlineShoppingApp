@@ -21,7 +21,7 @@
 	
 	
 	<beans:bean id="txManager"
-		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+		class="org.springframework.orm.hibernate5.HibernateTransactionManager">
 		<beans:property name="sessionFactory" ref="sessionFactory" />
 	</beans:bean>
 	
@@ -34,6 +34,8 @@
 		<beans:property name="annotatedClasses">
 			<beans:list>
 				<beans:value>com.shopping.model.Order</beans:value>
+				<beans:value>com.shopping.model.Customer</beans:value>
+				<beans:value>com.shopping.model.User</beans:value>
 			</beans:list>
 		</beans:property>
 		<beans:property name="hibernateProperties">
@@ -51,7 +53,7 @@
 		<beans:property name="driverClassName" value="com.mysql.jdbc.Driver" />
 		<beans:property name="url" value="jdbc:mysql://localhost/cs544?useSSL=false" />
 		<beans:property name="username" value="root" />
-		<beans:property name="password" value="root" />
+		<beans:property name="password" value="mysql" />
 	</beans:bean>
 
 	<!-- Handles HTTP GET requests for /resources/** by efficiently serving up static resources in the ${webappRoot}/resources directory -->
@@ -69,6 +71,7 @@
 	<context:component-scan base-package="com.shopping.controller" />
 	<context:component-scan base-package="com.shopping.model" />
 	<context:component-scan base-package="com.shopping.service" />
+	
 	
 	
 </beans:beans>

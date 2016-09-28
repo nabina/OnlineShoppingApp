@@ -29,6 +29,27 @@
 			<td>Password:</td>
 			<td><input type="text" name="password" /> </td>
 		</tr>
+		<tr>
+			<td>ConfirmPassword:</td>
+			<td><input type="text" name="confirmPassword" /> </td>
+		</tr>
+		<!-- <tr>
+			<td>City:</td>
+			<td><input type="text" name="city" /> </td>
+		</tr>
+		
+		<tr>
+			<td>Zip Code:</td>
+			<td><input type="text" name="zipCode" /> </td>
+		</tr>
+		<tr>
+			<td>State:</td>
+			<td><input type="text" name="state" /> </td>
+		</tr>
+		<tr>
+			<td>Country:</td>
+			<td><input type="text" name="country" /> </td>
+		</tr> -->
 	</table>
 	<input type="submit"/>
 
